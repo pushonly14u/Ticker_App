@@ -67,7 +67,7 @@ public class Start {
 				System.gc();
 				break;
 			case 2:
-				System.out.println("No of seats available now: " + service.numSeatsAvailable());
+				System.out.println("\nNo of seats available now: " + service.numSeatsAvailable());
 				break;
 			case 3:
 				System.out.println("How many seats for hold?");
@@ -95,9 +95,9 @@ public class Start {
 				}
 				SeatHold hold = service.findAndHoldSeats(seats, email);
 				if(hold!=null){
-					System.out.println("" + seats + " held!\n" + hold);
+					System.out.println("\n" + seats + " held!\n" + hold);
 				}else{
-					System.out.println("Your request has been failed! Please try again!");
+					System.out.println("\nYour request has been failed! Please try again!");
 				}
 				break;
 			case 4:
@@ -124,11 +124,11 @@ public class Start {
 						isvalidEmail = Helper.isValidEmail(cust);
 					}
 				}
-				System.out.println(service.reserveSeats(id, cust));
+				System.out.println("\n" + service.reserveSeats(id, cust));
 				break;
 			case 5:
 				loop = false;
-				System.out.println("Bye!");
+				System.out.println("\nBye!");
 				break;
 			default:
 				System.out.println("Invalid option.");

@@ -73,6 +73,6 @@ public class Venue {
 			sb.append("\n");
 		}
 //		sb.append("[[ This side stage ]]");
-		return sb.toString();
+		return sb.toString().trim();
 	}
 }

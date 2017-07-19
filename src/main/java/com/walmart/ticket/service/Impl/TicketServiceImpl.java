@@ -35,6 +35,7 @@ public class TicketServiceImpl implements TicketService {
 
 	public int numSeatsAvailable() {
 		expiryCheck();
+		System.out.println(v.prettyPrint());
 		return available;
 	}
 
@@ -45,8 +46,8 @@ public class TicketServiceImpl implements TicketService {
 			SeatHold tempSH = entry.getValue();
 			long now = Instant.now().getEpochSecond();
 			if((now - tempSH.getCreatedAt().getEpochSecond())> this.seconds){
-				System.out.println("()now = " + now + " sec.");
-				System.out.println("()Created at = " + tempSH.getCreatedAt().getEpochSecond() + " sec.");
+				System.out.println("\t()now = " + now + " sec.");
+				System.out.println("\t()Created at = " + tempSH.getCreatedAt().getEpochSecond() + " sec.");
 				updateStatus(tempSH.getSeatsHeld(), STATUS.AVAILABLE);
 				this.available += tempSH.getSeatsHeld().size();
 				it.remove();
@@ -59,8 +60,8 @@ public class TicketServiceImpl implements TicketService {
 		if(tempSH!=null){
 			long now = Instant.now().getEpochSecond();
 			if((now - tempSH.getCreatedAt().getEpochSecond())> this.seconds){
-				System.out.println("now = " + now + " sec.");
-				System.out.println("Created at = " + tempSH.getCreatedAt().getEpochSecond() + " sec.");
+				System.out.println("\tnow = " + now + " sec.");
+				System.out.println("\tCreated at = " + tempSH.getCreatedAt().getEpochSecond() + " sec.");
 				updateStatus(tempSH.getSeatsHeld(), STATUS.AVAILABLE);
 				this.available += tempSH.getSeatsHeld().size();
 				seatHoldMapper.remove(seatHoldId);
@@ -74,7 +75,7 @@ public class TicketServiceImpl implements TicketService {
 		updateStatus(holdingSeats, STATUS.HOLD);
 		this.available -= holdingSeats.size();
 		SeatHold hold = generateSeatHold(holdingSeats, customerEmail);
-		seatHoldMapper.put(hold.getId(), hold);
+		if(hold!=null)seatHoldMapper.put(hold.getId(), hold);
 		return hold;
 	}
 
@@ -124,11 +125,11 @@ public class TicketServiceImpl implements TicketService {
 		expiryCheck(seatHoldId);
 		SeatHold seatHold = finder(seatHoldId);
 		if(seatHold == null){
-			System.out.println("nulll...");
+			System.out.println("\t\t Reserve: seatHold is null ");
 			return null;
 		}
 		updateStatus(seatHold.getSeatsHeld(), STATUS.RESERVED);
-		this.available -= seatHold.getSeatsHeld().size();
+//		this.available -= seatHold.getSeatsHeld().size();
 		seatHoldMapper.remove(seatHoldId);
 		return "Reserved!";
 	}

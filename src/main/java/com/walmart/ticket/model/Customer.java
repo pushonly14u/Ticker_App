@@ -38,12 +38,12 @@ public class Customer {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("(");
+		//builder.append("(");
 		if (Name != null)
 			builder.append(Name).append(", ");
 		if (email != null)
 			builder.append(email);
-		builder.append(")");
+		//builder.append(")");
 		return builder.toString();
 	}
 	

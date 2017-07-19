@@ -13,8 +13,18 @@ public class Start {
 		TicketService service = new TicketServiceImpl(v);
 		System.out.println(service.numSeatsAvailable());
 		System.out.println(service.findAndHoldSeats(4, "darpan@dp.com"));
-		//Thread.sleep(6000);
-		System.out.println(service.reserveSeats(1, "darpan@dp.com"));
+		System.out.println(service.numSeatsAvailable());
+		System.out.println(service.findAndHoldSeats(12, "darpan@dp.com"));
+		System.out.println(service.numSeatsAvailable());
+		Thread.sleep(6000);
+		System.out.println("First: " + service.numSeatsAvailable());
+		System.out.println(service.findAndHoldSeats(1, "darpan@dp.com"));
+		System.out.println("After 1 seat holding: " + service.numSeatsAvailable());
+		
+		System.out.println(service.reserveSeats(3, "darpan@dp.com"));
+		System.out.println("Reserving held seats: " + service.numSeatsAvailable());
+		//System.out.println(service.reserveSeats(2, "darpan@dp.com"));
+		System.out.println(service.numSeatsAvailable());
 	}
 
 }

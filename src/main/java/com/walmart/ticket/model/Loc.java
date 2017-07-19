@@ -23,7 +23,7 @@ public class Loc {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("{").append(row).append(", ")
+		builder.append("{").append(row).append(",")
 				.append(seatPerRow).append("}");
 		return builder.toString();
 	}

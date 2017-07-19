@@ -40,14 +40,14 @@ public class Seat {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Seat [");
+		builder.append("Seat<");
 		if (seatNo != null)
-			builder.append("seatNo=").append(seatNo).append(", ");
+			builder.append(seatNo).append(", ");
 		if (reservedBy != null)
 			builder.append("reservedBy=").append(reservedBy).append(", ");
 		if (status != null)
 			builder.append("status=").append(status);
-		builder.append("]");
+		builder.append(">");
 		return builder.toString();
 	}
 	

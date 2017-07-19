@@ -87,7 +87,7 @@ public class SeatHold {
 		if (createdAt != null)
 			builder.append(createdAt).append(", ");
 		if (seatsHeld != null)
-			builder.append(seatsHeld);
+			builder.append("\n\t" + seatsHeld.size() + " seats held: ").append(seatsHeld);
 		builder.append("]");
 		return builder.toString();
 	}

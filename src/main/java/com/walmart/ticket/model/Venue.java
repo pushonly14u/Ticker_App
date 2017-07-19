@@ -62,5 +62,14 @@ public class Venue {
 		builder.append("]");
 		return builder.toString();
 	}
-	
+	public String prettyPrint(){
+		StringBuilder sb = new StringBuilder();
+		for(int i=0; i<rows; i++){
+			for(int j=0; j<seatsPerRow; j++){
+				sb.append(seats[i][j].getStatus()); sb.append(" ");
+			}
+			sb.append("\n");
+		}
+		return sb.toString();
+	}
 }

@@ -86,8 +86,13 @@ public class SeatHold {
 			builder.append(customer).append(", ");
 		if (createdAt != null)
 			builder.append(createdAt).append(", ");
-		if (seatsHeld != null)
-			builder.append("\n\t" + seatsHeld.size() + " seats held: ").append(seatsHeld);
+		if (seatsHeld != null){
+			builder.append(seatsHeld.size() + " seats held: [");
+			for(Seat st: seatsHeld){
+				builder.append(st.getSeatNo()); builder.append(" ");
+			}
+			builder.append("]");
+		}
 		builder.append("]");
 		return builder.toString();
 	}

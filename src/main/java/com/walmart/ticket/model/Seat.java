@@ -1,34 +1,30 @@
 package com.walmart.ticket.model;
-/**
- * 
- * @author Darpan Shah
- *
- */
+
 public class Seat {
-	Loc seatNo;
-	Customer reservedBy;
+	SeatLocation seatNo;
+	User reservedBy;
 	STATUS status;
 	
-	public Seat(Loc seatNo) {
+	public Seat(SeatLocation seatNo) {
 		super();
 		this.seatNo = seatNo;
 	}
 	
-	public Seat(Loc seatNo, STATUS status) {
+	public Seat(SeatLocation seatNo, STATUS status) {
 		this(seatNo);
 		this.status = status;
 	}
 
-	public Loc getSeatNo() {
+	public SeatLocation getSeatNo() {
 		return seatNo;
 	}
-	public void setSeatNo(Loc seatNo) {
+	public void setSeatNo(SeatLocation seatNo) {
 		this.seatNo = seatNo;
 	}
-	public Customer getReservedBy() {
+	public User getReservedBy() {
 		return reservedBy;
 	}
-	public void setReservedBy(Customer reservedBy) {
+	public void setReservedBy(User reservedBy) {
 		this.reservedBy = reservedBy;
 	}
 	public STATUS getStatus() {

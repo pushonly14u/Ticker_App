@@ -34,7 +34,7 @@
 					</descriptorRefs>
 					<archive>
 						<manifest>
-							<mainClass>com.walmart.ticket.Start</mainClass>
+							<mainClass>com.walmart.ticket.init.Start</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
@@ -60,11 +60,7 @@
 			<artifactId>json</artifactId>
 			<version>20140107</version>
 		</dependency>
-		<dependency>
-			<groupId>commons-validator</groupId>
-			<artifactId>commons-validator</artifactId>
-			<version>1.4.0</version>
-		</dependency>
+	
 
 	</dependencies>
 </project>

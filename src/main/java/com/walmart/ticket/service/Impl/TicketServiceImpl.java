@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import com.walmart.ticket.model.Customer;
+import com.walmart.ticket.model.User;
 import com.walmart.ticket.model.STATUS;
 import com.walmart.ticket.model.Seat;
 import com.walmart.ticket.model.SeatHold;
 import com.walmart.ticket.model.Venue;
 import com.walmart.ticket.service.TicketService;
-import com.walmart.ticket.utils.Helper;
+import com.walmart.ticket.utils.IOvalidator;
 
 public class TicketServiceImpl implements TicketService {
 	private int available;
@@ -45,8 +45,6 @@ public class TicketServiceImpl implements TicketService {
 			SeatHold tempSH = entry.getValue();
 			long now = Instant.now().getEpochSecond();
 			if ((now - tempSH.getCreatedAt().getEpochSecond()) > this.seconds) {
-//				System.out.println("\t()now = " + now + " sec.");
-//				System.out.println("\t()Created at = " + tempSH.getCreatedAt().getEpochSecond() + " sec.");
 				updateStatus(tempSH.getSeatsHeld(), STATUS.AVAILABLE);
 				this.available += tempSH.getSeatsHeld().size();
 				it.remove();
@@ -59,8 +57,6 @@ public class TicketServiceImpl implements TicketService {
 		if(tempSH!=null){
 			long now = Instant.now().getEpochSecond();
 			if((now - tempSH.getCreatedAt().getEpochSecond())> this.seconds){
-//				System.out.println("\tnow = " + now + " sec.");
-//				System.out.println("\tCreated at = " + tempSH.getCreatedAt().getEpochSecond() + " sec.");
 				updateStatus(tempSH.getSeatsHeld(), STATUS.AVAILABLE);
 				this.available += tempSH.getSeatsHeld().size();
 				seatHoldMapper.remove(seatHoldId);
@@ -89,7 +85,7 @@ public class TicketServiceImpl implements TicketService {
 			return null;
 		}
 		SeatHold hold = new SeatHold();
-		hold.setCustomer(new Customer(customerEmail));
+		hold.setCustomer(new User(customerEmail));
 		hold.setSeatsHeld(holdingSeats);
 		hold.setCreatedAt(Instant.now());
 		
@@ -98,7 +94,7 @@ public class TicketServiceImpl implements TicketService {
 	
 	private List<Seat> findGoodSeats(int numSeats){
 		if(this.available < numSeats){
-			System.out.println("There are only " + this.available + " seats available now!");
+			System.out.println(this.available + " seats left!");
 			return new LinkedList<Seat>(); 
 		}
 		Seat[][] seats = v.getSeats();
@@ -125,16 +121,15 @@ public class TicketServiceImpl implements TicketService {
 		expiryCheck(seatHoldId);
 		SeatHold seatHold = finder(seatHoldId);
 		if(seatHold == null){
-			System.out.println("Either seatHoldId is invalid OR is expired! ");
+			System.out.println("SeatHoldId is invalid or it may expired! ");
 			return null;
 		}
-		boolean isValidCustomer = Helper.validateCustomer(customerEmail, seatHold.getCustomer().getEmail());
+		boolean isValidCustomer = IOvalidator.validateCustomer(customerEmail, seatHold.getCustomer().getEmail());
 		if(!isValidCustomer){
 			return "cannot verify customer. Please request reservation with correct customer email.";
 		}
 		updateStatus(seatHold.getSeatsHeld(), STATUS.RESERVED);
-//		this.available -= seatHold.getSeatsHeld().size();
-		String result =  Helper.reservationCode(seatHold);
+		String result =  IOvalidator.reservationCode(seatHold);
 		seatHoldMapper.remove(seatHoldId);
 		return result;
 	}

@@ -4,86 +4,65 @@ import java.time.Instant;
 import java.util.List;
 
 public class SeatHold {
+	
+	private List<Seat> seatsHeld;
 	private static int counter;
 	private int id;
-	private Customer customer;
+	private User user;
 	private Instant createdAt;
-	private List<Seat> seatsHeld;
 	static {
 		counter = 0;
 	}
 	public SeatHold() {
 		this.id = ++counter;
 	}
-	/**
-	 * @return the counter
-	 */
+	
 	public static int getCounter() {
 		return counter;
 	}
-	/**
-	 * @param counter the counter to set
-	 */
+	
 	public static void setCounter(int counter) {
 		SeatHold.counter = counter;
 	}
-	/**
-	 * @return the id
-	 */
+	
 	public int getId() {
 		return id;
 	}
-	/**
-	 * @param id the id to set
-	 */
+	
 	public void setId(int id) {
 		this.id = id;
 	}
-	/**
-	 * @return the customer
-	 */
-	public Customer getCustomer() {
-		return customer;
+	
+	public User getCustomer() {
+		return user;
 	}
-	/**
-	 * @param customer the customer to set
-	 */
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	
+	public void setCustomer(User user) {
+		this.user = user;
 	}
-	/**
-	 * @return the createdAt
-	 */
+	
 	public Instant getCreatedAt() {
 		return createdAt;
 	}
-	/**
-	 * @param createdAt the createdAt to set
-	 */
+	
 	public void setCreatedAt(Instant createdAt) {
 		this.createdAt = createdAt;
 	}
-	/**
-	 * @return the seatsHeld
-	 */
+	
 	public List<Seat> getSeatsHeld() {
 		return seatsHeld;
 	}
-	/**
-	 * @param seatsHeld the seatsHeld to set
-	 */
+	
 	public void setSeatsHeld(List<Seat> seatsHeld) {
 		this.seatsHeld = seatsHeld;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("SeatHold [").append(id).append(", ");
-		if (customer != null)
-			builder.append(customer).append(", ");
+		if (user != null)
+			builder.append(user).append(", ");
 		if (createdAt != null)
 			builder.append(createdAt).append(", ");
 		if (seatsHeld != null){

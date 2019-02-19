@@ -1,0 +1,15 @@
+GO inside this Derectory
+
+A) Run the following command
+	mvn clean
+
+B) To build the project, run test cases and make the executable jar file  run following command
+	mvn clean package assembly:assembly
+
+C) Now we have executabe jar file inside target folde, to Run the application run following command(form same location)
+	java -jar target\TicketService-0.0.1-jar-with-dependencies.jar com.walmart.ticket.init.Start
+									or
+	java -jar target/TicketService-0.0.1-jar-with-dependencies.jar com.walmart.ticket.init.Start
+									
+	
+The application started

@@ -1,9 +1,9 @@
 package com.walmart.ticket.model;
 
-public class Loc {
+public class SeatLocation {
 	int row;
 	int seatPerRow;
-	public Loc(int row, int seatPerRow) {
+	public SeatLocation(int row, int seatPerRow) {
 		super();
 		this.row = row;
 		this.seatPerRow = seatPerRow;
